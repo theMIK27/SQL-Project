@@ -1,0 +1,42 @@
+#Query for total number of music track by their format#
+SELECT t1.MediaName, count(*)
+FROM(SELECT T.Name, T.Milliseconds, MT.Name MediaName
+FROM Track T
+JOIN MediaType MT
+ON T.MediaTypeId = MT.MediaTypeId
+WHERE T.Milliseconds > (SELECT avg(Milliseconds) FROM Track)
+ORDER BY 2 DESC) t1
+GROUP BY 1;
+
+#Query for top 15 artist by their songs#
+SELECT AR.Name, count(*)
+FROM(SELECT T.Name Track_Name, T.Milliseconds, AR.ArtistId, AR.Name
+FROM Track T
+INNER JOIN Album A
+ON T.AlbumId = A.AlbumId
+INNER JOIN Artist AR
+ON A.ArtistId = AR.ArtistId
+WHERE T.Milliseconds>(SELECT avg(milliseconds) FROM Track)
+ORDER BY Milliseconds DESC)AR
+GROUP BY AR.Name
+ORDER BY count(*) DESC
+LIMIT 15;
+
+#Query for top 15 customers spending money#
+SELECT Customer.FirstName , Customer.LastName, SUM(Invoice.Total)
+FROM Customer
+JOIN Invoice
+ON Customer.CustomerId = Invoice.CustomerId
+GROUP BY Customer.FirstName, Customer.LastName 
+ORDER BY SUM(Invoice.Total) DESC
+LIMIT 15;
+
+#Query for number of songs in each playlist#
+SELECT Playlist.Name, COUNT(PlaylistTrack.TrackId) AS num_of_songs_in_playlist
+FROM Playlist
+JOIN PlaylistTrack
+ON Playlist.PlaylistId = PlaylistTrack.PlaylistId
+GROUP BY Playlist.Name
+ORDER BY COUNT(PlaylistTrack.TrackId) DESC;
+
+

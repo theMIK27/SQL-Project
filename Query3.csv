@@ -1,0 +1,16 @@
+FirstName,LastName,SUM(Invoice.Total)
+Helena,Holý,49.62
+Richard,Cunningham,47.62
+Luis,Rojas,46.62
+Hugh,O'Reilly,45.62
+Ladislav,Kovács,45.62
+Julia,Barnett,43.62
+Frank,Ralston,43.62
+Fynn,Zimmermann,43.62
+Astrid,Gruber,42.62
+Victor,Stevens,42.62
+Terhi,Hämäläinen,41.62
+František,Wichterlová,40.62
+Isabelle,Mercier,40.62
+Johannes,Van der Berg,40.62
+Jack,Smith,39.62
